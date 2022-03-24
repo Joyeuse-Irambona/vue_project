@@ -1,0 +1,47 @@
+<template>
+  <div class="bkcont">
+    <h2>Login</h2>
+    <form class="form" @submit.prevent="submitHandler">
+      <div v-if="error" class=" alert alert-danger" role="alert">
+        {{error}}
+      </div>
+      <label>Email</label>
+      <input type="email" name="email" v-model="email" required />
+      <label>Password</label>
+      <input type="password" name="password" v-model="password" required />
+      <button type="submit" name="submit">Login</button>
+      <p class="forget-password text-right">
+        <router-link to="signup">Sign up </router-link>
+        <router-link to="forgot">Forget password? </router-link>
+      </p>
+    </form>
+  </div>
+</template>
+<script>
+import axios from 'axios'
+export default {
+  name: "login",
+  data(){
+    return{
+      email: "",
+      password: "",
+      error:""
+    }
+  },
+  methods:{
+     async submitHandler(){
+          try {
+            const response= await axios.post('http://product-v1.herokuapp.com/api/login', {
+                email: this.email,
+                password: this.password
+          });
+          localStorage.setItem('token',response.data.token);
+          this.$store.dispatch('user', response.data.user);
+            this.$router.push('/list')
+          } catch (error) {
+            this.error = 'Invalid email/password';
+          }
+        }
+  }
+}
+</script>

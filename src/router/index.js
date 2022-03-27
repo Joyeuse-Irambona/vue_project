@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/book_list.vue'
+import list from '../views/product_list.vue'
 import add from '../views/add.vue'
-import show_book from '../views/show_book.vue'
+import show_product from '../views/show_product.vue'
 import update from '../views/update.vue'
 import sign_up from '../views/sign_up.vue'
 import login from '../views/login.vue'
-import book_list from '../views/book_list.vue'
+import product_list from '../views/product_list.vue'
 import home from '../views/home.vue'
 
 Vue.use(VueRouter)
@@ -31,7 +31,7 @@ const routes = [
   {
     path: '/list',
     name: 'list',
-    component: book_list
+    component: product_list
   },
   {
     path: '/add',
@@ -39,9 +39,9 @@ const routes = [
     component: add
   },
   {
-    path: '/book/:id',
-    name: 'book',
-    component: show_book
+    path: '/product/:id',
+    name: 'product',
+    component: show_product
   },
   {
     path: '/update/:id',
@@ -49,6 +49,20 @@ const routes = [
     component: update
   }
 ]
+
+router.beforeResolve((to, from, next) => {
+  // If this isn't an initial page load.
+  if (to.name) {
+    // Start the route progress bar.
+    NProgress.start()
+  }
+  next()
+})
+
+router.afterEach((to, from) => {
+  // Complete the animation of the route progress bar.
+  NProgress.done()
+})
 
 const router = new VueRouter({
   mode: 'history',

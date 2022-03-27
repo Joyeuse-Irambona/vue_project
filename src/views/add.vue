@@ -1,61 +1,72 @@
 <template>
-    <div class="bkcont">
-        <h2>Add New Book</h2>
-        <hr />
+  <div class="bkcont">
+    <h2>Add New Product</h2>
+    <hr />
 
-        <form class="form" v-on:submit="submitHandler">
-            <label>Title</label>
-            <input type="text" name="title" v-model="title" required />
-            <label>Author</label>
-            <input type="text" name="author" v-model="author" required />
-            <label>Summary</label>                    
-            <input type="text" name="summary" v-model="summary" required />
-            <label>Body</label>
-            <textarea rows="6" name="body" v-model="description" required></textarea>
-            <button type="submit" name="submit">Add Book</button>
-        </form>
-    </div>
+    <form class="form" @submit.prevent="submitHandler()">
+      <label>Name</label>
+      <input type="text" name="name" v-model="name" required />
+      <label>Description</label>
+      <textarea
+        rows="6"
+        type="text"
+        name="description"
+        v-model="description"
+        required
+      />
+      <label>Price</label>
+      <input type="text" name="price" v-model="price" required />
+      <label>Quantity</label>
+      <input name="text" v-model="quantity" required />
+      <button type="submit" name="submit">Add Product</button>
+    </form>
+  </div>
 </template>
 
 <script>
+import axios from "axios";
+import integer from 'vuelidate/lib/validators/integer';
 export default {
-    name: "add",
-    data() {
-        return {
-            title: "",
-            author: "",
-            summary: "",
-            description: ""
-        }
-    },
+  name: "add",
+  data() {
+    return {
+      name: "",
+      description: "",
+      price: float,
+      quantity: integer,
+    };
+  },
 
-    methods : {
-        async submitHandler(e) {
-            e.preventDefault();
-            const re = await fetch('http://localhost:3000/book', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    title: this.title,
-                    author: this.author,
-                    summary: this.summary,
-                    description: this.description
-                })
-            });
+  methods: {
+    async submitHandler() {
+      try {
+        const token = localStorage.getItem("token");
+          axios.defaults.headers.common["Authorization"] = "Bearer "+token;
+        const response = await axios.post(
+          "http://product-mgt-api.herokuapp.com/api/product",
+          {
+            name: this.name,
+            description: this.description,
+            price: this.price,
+            quantity: this.quantity,
+          }
+          
+        );
 
-            if (re.status === 201) {
+        // this.$router.push('/login')
+      } catch (error) {
+        console.log(error);
+      }
+
+      /* if (re.status === 201) {
                 console.log('data sent');
             }
             else {
                 console.log('fail to send data');
             }
-            e.target.reset();
-            this.$router.push({ name: 'home' });
-        }
+             e.target.reset();
+             this.$router.push({ name: 'list' }); */
     },
-
-
-}
+  },
+};
 </script>

@@ -31,15 +31,15 @@ export default {
   methods:{
      async submitHandler(){
           try {
-            const response= await axios.post('http://product-v1.herokuapp.com/api/login', {
+            const response= await axios.post('https://product-mgt-api.herokuapp.com/api/login', {
                 email: this.email,
                 password: this.password
           });
-          localStorage.setItem('token',response.data.token);
-          this.$store.dispatch('user', response.data.user);
-            this.$router.push('/list')
+           localStorage.setItem('token',response.data.token);
+           this.$router.push('/list')
           } catch (error) {
-            this.error = 'Invalid email/password';
+           console.log(error);
+           
           }
         }
   }

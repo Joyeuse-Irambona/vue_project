@@ -5,10 +5,12 @@ import store from './store'
 import style from './assets/style.css'
 import './axios'
 import Store from 'vuex'
-import vuelidate from 'vuelidate'
+import Vuelidate from 'vuelidate'
+import VueProgress from 'vue-progress'
+Vue.use(VueProgress)
 
 Vue.config.productionTip = false
-Vue.use(vuelidate);
+Vue.use(Vuelidate);
 
 new Vue({
   router,

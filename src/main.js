@@ -2,15 +2,44 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import style from './assets/style.css'
-import './axios'
-import Store from 'vuex'
+import axios from 'axios'
+import VueProgressBar from 'vue-progressbar'
+import Toasted from 'vue-toasted'
 import Vuelidate from 'vuelidate'
-import VueProgress from 'vue-progress'
-Vue.use(VueProgress)
+
+
+
+
+
+Vue.use(Toasted, {
+  duration: '3000',
+  position: 'top-right',
+})
+
+const options = {
+  color: 'black',
+  failedColor: '#874b4b',
+  thickness: '5px',
+  transition: {
+    speed: '0.2s',
+    opacity: '0.6s',
+    termination: 300
+  },
+  autoRevert: true,
+  location: 'top',
+  inverse: false
+}
+
+Vue.use(VueProgressBar, options)
 
 Vue.config.productionTip = false
-Vue.use(Vuelidate);
+
+Vue.prototype.$http  =  axios;
+const  accessToken  =  localStorage.getItem('access_token')
+
+if (accessToken) {
+    Vue.prototype.$http.defaults.headers.common['Authorization'] =  accessToken
+}
 
 new Vue({
   router,

@@ -1,6 +1,6 @@
 <template>
     <nav id="navbar" class="navbar">
-          <ul>
+          <ul >
             <li><router-link to="/" class="a">Home</router-link></li>
             <li><router-link to="/login">Login</router-link></li>
             <li>

@@ -1,71 +1,44 @@
 <template>
-<div>
-  <!-- ======= Header ======= -->
+  <div>
     <header id="header" class="fixed-top">
       <div class="container d-flex align-items-center">
-        <h1 class="logo me-auto"><a href="index.html">Electronics</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        <h1 class="logo me-auto">
+          <a href="index.html">Electronics </a>
+        </h1>
 
-        <NavLogin/>
-        <NavLogout />
-        <!-- .navbar -->
+        <div>
+          <NavLogin />
+        </div>
+        <div>
+          <NavLogout v-if="isLoggedIn" />
+        </div>
       </div>
     </header>
-    <!-- End Header -->
+
     <vue-progress-bar />
     <router-view />
-</div>
-  <!-- <div>
-    <div>
-      <nav class="nav">
-        
-      </nav>
-      
-    </div>
-    
-  </div> -->
+  </div>
 </template>
 <script>
-import axios from 'axios';
-import NavLogin from './components/items/navLogin.vue';
-import NavLogout from './components/items/navLogout.vue';
+import axios from "axios";
+import store from "./store/index.js";
+import NavLogin from "./components/items/navLogin.vue";
+import NavLogout from "./components/items/navLogout.vue";
 
 export default {
-name:'App',  
-components:{NavLogin,NavLogout},
-      data(){
-        return{
-          token: '',
-          setTokenLogin:false,
-          setTokenLogout:true
-        }
-      },
+  name: "App",
+  components: { NavLogin, NavLogout },
 
-  methods:{
-getToken(){
-  this.token = localStorage.getItem()
-},
-
-   handleLogout(){
-        localStorage.removeItem('token');
-        this.$router.push('/');
-      }
-      
-   
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated;
+    },
   },
-
-
-  mounted() {
-    this.getToken();
-    this.$Progress.finish();
-  },
-
 
   async created() {
-    const response = await axios.get('http://product-mgt-api.herokuapp.com/api/users');
-    this.$store.dispatch('token', response.data);
-
+    const response = await axios.get(
+      "http://product-mgt-api.herokuapp.com/api/users"
+    );
     this.$Progress.start();
     this.$router.beforeEach((to, from, next) => {
       if (to.meta.progress !== undefined) {

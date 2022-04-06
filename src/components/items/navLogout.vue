@@ -1,8 +1,19 @@
 <template>
     <nav id="navbar" class="navbar">
-          <ul>
-            <li><a class="nav-link scrollto" @click.prevent="handleLogout" >Logout</a></li>
+          <ul @click.prevent="handleLogout()">
+            <li><a class="nav-link scrollto"  >Logout</a></li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
     </nav>
 </template>
+
+<script>
+export default {
+  name:'logout',
+  methods:{
+    handleLogout(){
+      localStorage.removeItem('token');
+    }
+  }
+}
+</script>

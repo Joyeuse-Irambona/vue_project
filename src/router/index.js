@@ -11,6 +11,7 @@ import update from '../views/update.vue'
 import team from '../views/team.vue'
 
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -66,7 +67,8 @@ const routes = [
     path: '/team',
     name: 'team',
     component: team
-  }
+  },
+ 
 ]
 
 
@@ -76,6 +78,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
+
 
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem("token");

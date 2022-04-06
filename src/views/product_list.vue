@@ -61,6 +61,7 @@ export default {
 
             if (res.status === 200) {
                 this.products = await res.json();
+                this.$router.push('/list')
 
             }
         }

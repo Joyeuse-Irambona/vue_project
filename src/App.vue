@@ -3,15 +3,21 @@
     <header id="header" class="fixed-top">
       <div class="container d-flex align-items-center">
         <h1 class="logo me-auto">
-          <a href="index.html">Electronics </a>
+          <router-link href="index.html">Electronics </router-link>
         </h1>
 
-        <div>
-          <NavLogin />
-        </div>
-        <div>
-          <NavLogout v-if="isLoggedIn" />
-        </div>
+        <nav id="navbar" class="navbar">
+          <ul >
+            <li><router-link to="/" class="a">Home</router-link></li>
+            <li v-if="!isLoggedIn"><router-link to="/login">Login</router-link></li>
+            <li  v-if="!isLoggedIn">
+              <router-link to="/signup">SignUp</router-link>
+            </li>
+              <li><router-link to="/team">Team</router-link></li>
+            <li  v-if="isLoggedIn" @click="handleLogout"><router-link to="" class="nav-link scrollto" >Logout</router-link></li>
+          </ul >
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
       </div>
     </header>
 
@@ -29,11 +35,19 @@ export default {
   name: "App",
   components: { NavLogin, NavLogout },
 
+  methods: {
+    handleLogout(){
+      this.$router.push('/');
+      this.$store.getters.logoutUser();
+    }
+  },
+
   computed: {
     isLoggedIn() {
       return this.$store.getters.isAuthenticated;
     },
   },
+
 
   async created() {
     const response = await axios.get(

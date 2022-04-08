@@ -1,7 +1,12 @@
 <template>
-    <div class="bkcont">
-        <h2>Update Product</h2>
+<section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Update Product</h2>
         <hr />
+        </div>
+    <div class="bkcont">
 
         <form class="form" v-on:submit="updateProduct">
             <label>Name</label>
@@ -15,70 +20,81 @@
             <button type="submit" name="submit">Update</button>
         </form>
     </div>
+      </div>
+    </section>
 </template>
 
 <script>
-import Toasted from 'vue-toasted'
-import VueProgressBar from 'vue-progressbar'
+import Toasted from "vue-toasted";
+import VueProgressBar from "vue-progressbar";
 export default {
-    data() {
-        return {
-             name: "",
-            description: "",
-            price: "",
-            quantity: "",
-            product: {}
+  data() {
+    return {
+      name: "",
+      description: "",
+      price: "",
+      quantity: "",
+      product: {},
+    };
+  },
+
+  methods: {
+    async getProduct() {
+      // this.$progress.start();
+      const id = this.$route.params.id;
+      const token = localStorage.getItem('token');
+      const res = await fetch(
+        `http://product-mgt-api.herokuapp.com/api/product/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+          },
         }
+      );
+      const data = await res.json();
+      if (res.status === 200) {
+        console.log("data ", data);
+        this.product = data;
+        this.name = data.name;
+        this.description = data.description;
+        this.price = data.price;
+        this.quantity = data.quantity;
+      }
     },
 
-    methods: {
-        async getProduct() {
-            this.$progress.start();
-            const id = this.$route.params.id;
-            const res = await fetch(`http://product-v1.herokuapp.com/api/product/${id}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            });
-
-            if (res.status === 200) {
-                this.product = await res.json();
-                this.name = await this.product.name;
-                this.description = await this.product.description;
-                this.price = await this.product.price;
-                this.quantity = await this.product.quantity;
-            }
-        },
-
-        async updateProduct(e) {
-            e.preventDefault();
-            this.$progress.start();
-            const token = localStorage.getItem("token");
-          axios.defaults.headers.common["Authorization"] = "Bearer "+token;
-            const id = this.$route.params.id;
-            const res = await fetch(`http://product-mgt-api.herokuapp.com/api/product/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: this.name,
-                    description: this.description,
-                    price: this.price,
-                    quantity: this.quantity
-                })
-            });
-
-            if (res.status === 200) {
-                this.$toasted.show("Data updated")
-                this.$router.push({ name: 'produt', params: { id: id } });
-            }
+    async updateProduct(e) {
+      e.preventDefault();
+      // this.$progress.start();
+      const token = localStorage.getItem("token");
+      const id = this.$route.params.id;
+      const res = await fetch(
+        `http://product-mgt-api.herokuapp.com/api/product/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+          },
+          body: JSON.stringify({
+            name: this.name,
+            description: this.description,
+            price: this.price,
+            quantity: this.quantity,
+          }),
         }
-    },
+      );
 
-    mounted() {
-        this.getProduct();
-    }
-}
+      if (res.status === 200) {
+        this.$toasted.show("Data updated");
+        this.$router.push({ name: "list", params: { id: id } });
+      }
+    },
+  },
+
+  mounted() {
+    this.getProduct();
+  },
+};
 </script>

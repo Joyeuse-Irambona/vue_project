@@ -1,10 +1,10 @@
 <template>
     <!-- ======= Team Section ======= -->
-    <section id="team" class="team section-bg">
+    <section id="team" class="team">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Team</h2>
+          <h2 style="color: white">Team</h2>
         </div>
 
         <div class="row">

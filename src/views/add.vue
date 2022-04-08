@@ -1,9 +1,11 @@
 <template>
+<section id="contact" class="contact">
+<div class="container" data-aos="fade-up">
   <div class="bkcont">
     <h2>Add New Product</h2>
     <hr />
 
-    <form class="form" @submit.prevent="submitHandler()">
+    <form class="form" @submit.prevent="submitHandler">
       <label>Name</label>
       <input type="text" name="name" v-model="name" required />
       <label>Description</label>
@@ -21,6 +23,8 @@
       <button type="submit" name="submit">Add Product</button>
     </form>
   </div>
+</div>
+</section>
 </template>
 
 <script>
@@ -55,7 +59,7 @@ export default {
           
         );
 
-        this.$router.push('/list')
+         this.$router.push('/list')
       } catch (error) {
         console.log(error);
       }

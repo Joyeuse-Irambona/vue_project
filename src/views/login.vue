@@ -3,7 +3,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>SIGN IN</h2>
+          <h2 style="color: white">SIGN IN</h2>
         </div>
 
         <div class="row">

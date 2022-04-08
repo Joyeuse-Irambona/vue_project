@@ -5,7 +5,7 @@ import home from '../views/home.vue'
 import login from '../views/login.vue'
 import signup from '../views/sign_up.vue'
 import add from '../views/add.vue'
-import list from '../views/product_list.vue'
+import product_list from '../views/product_list.vue'
 import show_product from '../views/show_product'
 import update from '../views/update.vue'
 import team from '../views/team.vue'
@@ -42,7 +42,7 @@ const routes = [
   {
     path: '/list',
     name: 'list',
-    component: list,
+    component: product_list,
     meta: {
       requiresAuth: true
   }

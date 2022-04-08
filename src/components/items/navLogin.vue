@@ -11,3 +11,15 @@
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
 </template>
+
+<script>
+export default {
+  name:'logout',
+  methods:{
+    handleLogout(){
+      this.$store.getters.logoutUser();
+      this.$router.push('/')
+    }
+  }
+}
+</script>

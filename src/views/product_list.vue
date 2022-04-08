@@ -4,22 +4,22 @@
     <section id="services" class="services section-bg">
       <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-          <h2>Product list</h2>
+        <div style="color: white" class="section-title">
+          <h2 style="color: white">Product list</h2>
          
         </div>
 
-        <p>You want to add a product <router-link to="/add">Add new</router-link></p>
+        <p style="color: white">You want to add a product <router-link to="/add">Add new</router-link></p>
         <hr />
 
         <div class="">
 
 
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="400">
-            <div class="icon-box"  v-for="product in products" :key="product.id">
+          <div style="width: 100%; flex-wrap: wrap" class="col-xl-3 col-md-6 d-flex  justify-content-space-between mt-4 mt-md-0 " data-aos="zoom-in" data-aos-delay="400">
+            <div class="icon-box" style="width:100px,  margin: 20px"  v-for="product in products" :key="product.id">
               <div class="icon"><i class="bx bx-layer"></i></div>
-              <div class="list">         
-                    <router-link  :to="{ name: 'product', params: { id: product.name } }">
+              <div class="list" style=" display: block, width:100%">         
+                    <router-link  :to="{ name: 'product', params: { id: product.id } }">
                         <div class="product">
                             <h3>{{ product.name }}</h3>
                             <p>{{ product.price }}</p>

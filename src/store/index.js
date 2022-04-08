@@ -9,7 +9,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-      token:null
+      token: localStorage.getItem("token") ? localStorage.getItem("token") : null
     },
     getters:{
       token: (state)=> {
@@ -18,7 +18,13 @@ export default new Vuex.Store({
 
       isAuthenticated(state){
         return !!state.token && localStorage.getItem('token');
-      }  
+      },
+      
+      logoutUser(state) {
+        localStorage.removeItem("token");
+        state.token = null;
+      },
+
       
     },
     actions:{

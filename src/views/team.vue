@@ -9,13 +9,13 @@
 
         <div class="row">
 
-          <div class="col-lg-6" > 
+          <div class="col-lg-6" v-for="user in users" :key="user.id" > 
             <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
               <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info" v-for="user in users" :key="user.id">
-                <h4>{{users.name}}</h4>
-                <span>{{users.email}}</span>
-                <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+              <div class="member-info" >
+                <h4>{{user.name}}</h4>
+                <span>{{user.email}}</span>
+                <p>i'm one of us</p>
                 <div class="social">
                   <a href=""><i class="ri-twitter-fill"></i></a>
                   <a href=""><i class="ri-facebook-fill"></i></a>
@@ -41,16 +41,15 @@ export default {
             users:[]
         }
     },
-    methods:{
-         methods: {
+        methods: {
         async getusers() {
              const token = localStorage.getItem("token");
           axios.defaults.headers.common["Authorization"] = "Bearer "+token;
             const res = await fetch('http://product-mgt-api.herokuapp.com/api/users', {
-                method: 'GET',
+                method: 'GET', 
                 headers: {
                     'Type-Content': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer` + token
                 }
             });
 
@@ -63,6 +62,5 @@ export default {
     mounted() {
         this.getusers();
     }
-    }
-}   
+    }  
 </script>

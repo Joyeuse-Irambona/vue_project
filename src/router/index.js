@@ -66,7 +66,10 @@ const routes = [
   {
     path: '/team',
     name: 'team',
-    component: team
+    component: team,
+    meta:{
+      requiresAuth:true
+    }
   },
  
 ]

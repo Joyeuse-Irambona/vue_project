@@ -7,20 +7,18 @@
 
     <form class="form" @submit.prevent="submitHandler">
       <label>Name</label>
-      <input type="text" name="name" v-model="name" required />
+      <input type="text" v-model="name" />
       <label>Description</label>
       <textarea
         rows="6"
         type="text"
-        name="description"
         v-model="description"
-        required
       />
       <label>Price</label>
-      <input type="text" name="price" v-model="price" required />
+      <input type="number" v-model="price"/>
       <label>Quantity</label>
-      <input name="text" v-model="quantity" required />
-      <button type="submit" name="submit">Add Product</button>
+      <input type="number" v-model="quantity"/>
+      <button type="submit">Add Product</button>
     </form>
   </div>
 </div>
@@ -37,15 +35,15 @@ export default {
     return {
       name: "",
       description: "",
-      price: float,
-      quantity: integer,
+      price: "",
+      quantity: "",
     };
   },
 
   methods: {
     async submitHandler() {
+      this.$Progress.start();
       try {
-        this.$Progress.start();
         const token = localStorage.getItem("token");
           axios.defaults.headers.common["Authorization"] = "Bearer "+token;
         const response = await axios.post(
@@ -61,15 +59,11 @@ export default {
 
          this.$router.push('/list')
       } catch (error) {
+        this.$Progress.fail();
+        this.$toasted.show(error.response.data.message)
         console.log(error);
       }
 
-      if (re.status === 201) {
-                this.$toasted.show('data sent');
-            }
-            else {
-                this.$toasted.show('fail to send data');
-            }
              e.target.reset();
              this.$router.push({ name: 'list' }); 
     },

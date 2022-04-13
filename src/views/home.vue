@@ -24,11 +24,7 @@
             </h2>
             <div class="d-flex justify-content-center justify-content-lg-start">
               <router-link to="login" class="btn-get-started scrollto">Get Started</router-link>
-              <a
-                href="https://www.youtube.com/watch?v=jDDaplaOz7Q"
-                class="glightbox btn-watch-video"
-                ><i class="bi bi-play-circle"></i><span>Watch Video</span></a
-              >
+              <router-link to="list" class="btn-get-started scrollto ">Products</router-link>
             </div>
           </div>
           <div

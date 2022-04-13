@@ -89,6 +89,7 @@ router.beforeEach((to, from, next) => {
 
   // Check for protected route
   if (requiresAuth && ! token) {
+    var auth = window.confirm("you are not logged in");
     next('/login')
   } else 
   next()

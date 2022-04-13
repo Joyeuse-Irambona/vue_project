@@ -22,7 +22,7 @@
                     <router-link  :to="{ name: 'product', params: { id: product.id } }">
                         <div class="product">
                             <h3>{{ product.name }}</h3>
-                            <p>{{ product.price }}</p>
+                            <p>${{ product.price }}</p>
                             <p class="auth">{{ product.description }}</p>
                         </div>
                     </router-link>

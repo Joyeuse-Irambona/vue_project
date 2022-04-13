@@ -10,14 +10,14 @@
 
         <form class="form" v-on:submit="updateProduct">
             <label>Name</label>
-            <input type="text" name="name" v-model="name" required />
+            <input type="text"  v-model="name"  />
             <label>Description</label>
-            <textarea rows="6" name="body" v-model="description" required></textarea>
+            <textarea rows="6"  v-model="description" ></textarea>
             <label>Price</label>                    
-            <input type="text" name="price" v-model="price" required />
+            <input type="number"  v-model="price"  />
             <label>Quantity</label>
-             <input type="text" name="quantity" v-model="quantity" required />
-            <button type="submit" name="submit">Update</button>
+             <input type="number" v-model="quantity" />
+            <button type="submit">Update</button>
         </form>
     </div>
       </div>
@@ -26,6 +26,7 @@
 
 <script>
 import Toasted from "vue-toasted";
+
 import VueProgressBar from "vue-progressbar";
 export default {
   data() {
@@ -65,8 +66,8 @@ export default {
     },
 
     async updateProduct(e) {
+       this.$Progress.start();
       e.preventDefault();
-      // this.$progress.start();
       const token = localStorage.getItem("token");
       const id = this.$route.params.id;
       const res = await fetch(
@@ -89,6 +90,9 @@ export default {
       if (res.status === 200) {
         this.$toasted.show("Data updated");
         this.$router.push({ name: "list", params: { id: id } });
+      }else{
+        this.$Progress.fail(),
+        this.$toasted.show(error.res.message);
       }
     },
   },

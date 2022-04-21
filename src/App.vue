@@ -1,25 +1,25 @@
 <template>
-  <div>
-    <header id="header" class="fixed-top">
-      <div class="container d-flex align-items-center">
-        <h1 class="logo me-auto">
-          <router-link href="index.html">Electronics </router-link>
+  <div class="main">
+    <div class="container">
+      <div class="logo" >
+        <h1>
+          <router-link to="list" class="text">Electronics </router-link>
         </h1>
-
-        <nav id="navbar" class="navbar">
+      </div >
+      <div class="navbar">
           <ul >
             <li><router-link to="/" class="a">Home</router-link></li>
-            <li v-if="!isLoggedIn"><router-link to="/login">Login</router-link></li>
+            <li v-if="!isLoggedIn"><router-link to="/login" class="a">Login</router-link></li>
             <li  v-if="!isLoggedIn">
-              <router-link to="/signup">SignUp</router-link>
+              <router-link to="/signup" class="a">SignUp</router-link>
             </li>
-              <li><router-link to="/team">Team</router-link></li>
-            <li  v-if="isLoggedIn" @click="handleLogout"><router-link to="" class="nav-link scrollto" >Logout</router-link></li>
+              <li><router-link to="/team" class="a">Team</router-link></li>
+            <li  v-if="isLoggedIn" @click="handleLogout"><router-link to="" class="a" >Logout</router-link></li>
           </ul >
           <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav>
       </div>
-    </header>
+      </div>
+    
 
     <vue-progress-bar />
     <router-view />

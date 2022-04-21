@@ -1,10 +1,11 @@
 <template>
 <section id="contact" class="contact">
-<div class="container" data-aos="fade-up">
-  <div class="bkcont">
+<div class="container" >
+  <div class="section-title">
     <h2>Add New Product</h2>
+  </div>
     <hr />
-
+    <div class="hero">
     <form class="form" @submit.prevent="submitHandler">
       <label>Name</label>
       <input type="text" v-model="name" />

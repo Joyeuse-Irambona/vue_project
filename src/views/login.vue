@@ -1,18 +1,12 @@
 <template>
   <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
 
         <div class="section-title">
-          <h2 style="color: white">SIGN IN</h2>
+          <h2>SIGN IN</h2>
         </div>
-
-        <div class="row">
-             <div class="col-lg-5 d-flex align-items-stretch">
-    
-
-          </div>
-
-          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+        <hr/>
+          <div class="hero">
             <form action="forms/contact.php" method="post" role="form" class="php-email-form" @submit.prevent="submitHandler()">
               <div class="row">
           
@@ -31,8 +25,6 @@
           </div>
 
         </div>
-
-      </div>
     </section><!-- End Contact Section -->
 
 </template>

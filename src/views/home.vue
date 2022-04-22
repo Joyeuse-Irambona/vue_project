@@ -4,7 +4,7 @@
       <h1>Better Solutions For Management</h1>
       <h3>We are team of talented Managers of our products</h3>
       <div class="btn">
-      <router-link to="login" class="a">Get Started</router-link>
+      <router-link to="list" class="a">See Products</router-link>
     </div>
     </div>
     <div class="img">

@@ -2,11 +2,10 @@
 <section id="contact" class="contact">
 <div class="container" >
   <div class="section-title">
-    <h2>Add New Product</h2>
+    <h2 >Add New Product</h2>
   </div>
-    <hr />
     <div class="hero">
-    <form class="form" @submit.prevent="submitHandler">
+    <form style="margin:20px 50px" class="form" @submit.prevent="submitHandler">
       <label>Name</label>
       <input type="text" v-model="name" />
       <label>Description</label>

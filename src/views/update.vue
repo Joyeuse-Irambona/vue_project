@@ -6,9 +6,9 @@
           <h2>Update Product</h2>
         <hr />
         </div>
-    <div class="bkcont">
+    <div class="hero">
 
-        <form class="form" v-on:submit="updateProduct">
+        <form style="margin:20px 50px" v-on:submit="updateProduct">
             <label>Name</label>
             <input type="text"  v-model="name"  />
             <label>Description</label>

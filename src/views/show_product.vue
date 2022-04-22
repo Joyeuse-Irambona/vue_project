@@ -1,11 +1,11 @@
 <template>
     <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
-      <div class="bkb" style="color: white" v-if="product" >
-        <h2>{{product.name}}</h2>
-        <p>{{ product.description }}</p>
-        <h3>${{product.price}}</h3>
-        <h3>{{product.quantity}}</h3>
+      <div class="container" >
+      <div style="background:white" v-if="product" >
+        <h2>Name:{{product.name}}</h2>
+        <p class="text">Summary:{{ product.description }}</p>
+        <h3> Price:${{product.price}}</h3>
+        <h3>Quantity:{{product.quantity}}</h3>
 
         <div class="btn">
             <router-link :to="{ name: 'update', params: { id: product.id } }">Update</router-link>

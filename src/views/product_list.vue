@@ -9,7 +9,7 @@
          
         </div>
 
-        <p style="margin-left:400px">You want to add a product <router-link to="/add">Add new</router-link></p>
+        <p style="margin-left:50px">You want to add a product <router-link to="/add">Add new</router-link></p>
         <hr />
 
         <div class="">
@@ -21,9 +21,14 @@
               <div class="list" style=" display: block, width:100%">         
                     <router-link  :to="{ name: 'product', params: { id: product.id } }">
                         <div class="product">
-                            <h3>{{ product.name }}</h3>
-                            <p>${{ product.price }}</p>
-                            <p class="auth">{{ product.description }}</p>
+                          <div>
+                            <img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse">
+                          </div>
+                          <div class="text">
+                            <h2>{{ product.name }}</h2>
+                            <h4 >${{ product.price }}</h4>
+                            <p>{{ product.description }}</p>
+                          </div>
                         </div>
                     </router-link>
               </div>    

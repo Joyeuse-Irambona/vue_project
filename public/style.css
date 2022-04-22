@@ -5,7 +5,7 @@
     margin: 0px;
     padding-top: 0px;
 }
-h1, h2, h3, h4, h5, h6, label {
+h1, h2, h3, h4, h5, h6, label,p {
   color: rgb(54, 54, 112);
     font-family: "Jost", sans-serif;
 
@@ -43,8 +43,7 @@ h1, h2, h3, h4, h5, h6, label {
 
   }
     .navbar  ul li :hover{
-        color: rgb(209, 157, 60);
-        background: rgb(54, 54, 112);
+        color: rgb(54, 54, 112);
         cursor: pointer;
         }
   
@@ -62,15 +61,34 @@ h1, h2, h3, h4, h5, h6, label {
   display: flex;
   flex-wrap: wrap;
 }
-.product{
-  border: 5px solid lightblue;
-  width: 150px;
-  height: 200px;
-  margin: 40px;
+.showp{
+  width: 500px;
+  height: 400px;
   border-radius: 5px;
-  background: white;
-  padding: 10px ;
+  padding: 40px 40px;
 }
+.showp > button{
+  margin-bottom: 60px;
+  
+}
+.mouse {
+  height: 190px;
+  justify-content: center;
+  width: auto;
+}
+.product{
+  justify-content: center;
+  padding: 10px ;
+  display: flex;
+  flex-wrap:wrap;
+    position: relative;
+    width: auto;
+    height: 300px;
+    margin: 30px;
+    background: whitesmoke;
+    border-radius: 20px;
+    overflow: hidden;
+  }
 
  .img {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
@@ -165,15 +183,29 @@ hr {
 @media screen and (max-width: 1190px){
   .main{
     flex-direction: column;
-
+    margin: 0px;
     width: fit-content;
     height: fit-content;
+  }
+  .navbar{
+    height: fit-content;
+    width: fit-content;
+    justify-content: center;
+    margin: 20px;
+  }
+  .su
+  .logo{
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    margin: 0px auto;
+
   }
   .hero{
     display: flex;
     width: fit-content;
     flex-wrap: wrap;
-    margin-left: 0px;
+    margin: 20px 0px;
   }
   .text{
     font-size: small;
@@ -183,7 +215,7 @@ hr {
     margin: 0px;
     
   }
-  p, hr{
+ hr{
     display: none;
   }
   .section-title{

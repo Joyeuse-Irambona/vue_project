@@ -1,15 +1,16 @@
 <template>
     <section id="contact" class="contact">
       <div class="container" >
-      <div style="background:white" v-if="product" >
-        <h2>Name:{{product.name}}</h2>
-        <p class="text">Summary:{{ product.description }}</p>
+      <div class="showp" style="background:white" v-if="product" >
+        <h2>{{product.name}}</h2>
+        <hr/>
+        <p>Summary:{{ product.description }}</p>
         <h3> Price:${{product.price}}</h3>
         <h3>Quantity:{{product.quantity}}</h3>
 
-        <div class="btn">
-            <router-link :to="{ name: 'update', params: { id: product.id } }">Update</router-link>
-            <button @click="deleteProduct()">Delete</button>
+        <div class="shwp">
+            <router-link :to="{ name: 'update', params: { id: product.id } }" class="text" >Update</router-link>
+            <button @click="deleteProduct()" style="background:rgb(85, 156, 156); text-decoration: none; padding:40px,width: 40px">Delete</button>
         </div>
     </div>
      </div>

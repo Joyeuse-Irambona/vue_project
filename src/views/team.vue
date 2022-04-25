@@ -10,8 +10,8 @@
         <div class="row">
 
           <div class="col-lg-6" v-for="user in users" :key="user.id" > 
-            <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
-              <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+            <div class="member d-flex align-items-start" >
+              <div class=""><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
               <div class="member-info" >
                 <h4>{{user.name}}</h4>
                 <span>{{user.email}}</span>
